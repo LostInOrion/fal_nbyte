@@ -1,0 +1,21 @@
+Import('RTT_ROOT')
+Import('rtconfig')
+from building import *
+
+cwd = GetCurrentDir()
+
+# add the general drivers.
+src = Split("""
+""")
+
+#path =  [cwd]
+
+#Drivers
+path = [cwd]
+if GetDepend(['RT_SFUD_USING_SFDP']):
+    src = ['stm32f103_spi_flash_device.c']
+
+
+group = DefineGroup('Drivers', src, depend = [''], CPPPATH = path)
+
+Return('group')
